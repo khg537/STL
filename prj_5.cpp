@@ -24,7 +24,9 @@ int compare(const tuple<HANDLER, int, int>& a1, const tuple<HANDLER, int, int>& 
 
 void foo(void* p, string name)
 {
-  cout<<name<<endl;
+  cout<<name<<" : " << this_thread::get_id()<<endl;
+  this_thread::sleep_for(3s);
+  cout << name << " end"<<endl;
 }
 
 class NotificationCenter
@@ -53,7 +55,6 @@ public:
     {
       if (get<2>(n))
       {
-        cout << "start new thread"<<":";
         thread f1(get<0>(n), data);
         f1.detach();
 
